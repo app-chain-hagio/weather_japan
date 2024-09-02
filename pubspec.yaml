@@ -4,8 +4,7 @@ version: 0.3.0
 homepage: https://github.com/espresso3389/weather_japan
 
 environment:
-　sdk: '>=2.18.6 <3.4.5'
-　flutter: ">=3.19.5"
+  sdk: ">=2.12.0 <3.0.0"
 
 # dependencies:
 #   path: ^1.8.0
