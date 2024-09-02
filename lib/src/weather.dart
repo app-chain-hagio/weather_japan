@@ -44,22 +44,33 @@ class Weather {
   /// During the process, the function may download area data and they can be cached
   /// if you explicitly specify [cacheDirectory];
   /// otherwise the function will download them each time it requires the data.
-  static Future<Weather?> fromLocation({
+  static Future<String> getAreaCode({
     required double lng,
     required double lat,
     String? cacheDirectory,
   }) async {
     final area = await findArea(lng: lng, lat: lat);
-    if (area == null) return null;
-    return await fromClass10Code(area.class10);
+    if (area == null) return 'error';
+    return await area.class10;
+    //return await fromClass10Code('4446200');
+    //return area;
   }
 
   /// Obtain weather forecast data for the specified class 10 area code.
-  static Future<Weather?> fromClass10Code(String code) async {
+  static Future<dynamic> fromClass10Code(String code) async {
+    print('area code : ' + code);
+    var urlstr =
+        'https://www.jma.go.jp/bosai/forecast/data/forecast/' + code + '.json';
     final json = await http.get(
+        // ここを変更する必要がある
         Uri.parse('https://weather.tsukumijima.net/api/forecast/city/$code'));
-    return Weather.fromMap(jsonDecode(utf8.decode(json.bodyBytes)));
+    // Uri.parse(urlstr));
+    //print(utf8.decode(json.bodyBytes));
+    //return Weather.fromMap(jsonDecode(utf8.decode(json.bodyBytes)));
+    return utf8.decode(json.bodyBytes);
   }
+
+  //Future<dynamic> getAreaCode()
 
   @override
   String toString() {
