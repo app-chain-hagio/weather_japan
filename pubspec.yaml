@@ -14,5 +14,9 @@ dev_dependencies:
   lints: ^2.0.0
   test: ^1.16.0
   
-dependencies: {http: >=0.13.6 <1.0.0, path: ^1.8.1, synchronized: ^3.0.0+2, topojson: ^0.3.0}
+dependencies:
+  http: ">=0.13.6 <=1.0.0"
+  path: ^1.8.1
+  synchronized: ^3.0.0+2
+  topojson: ^0.3.0
 
